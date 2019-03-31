@@ -5,9 +5,19 @@ import rawpy
 import imageio
 from xml.dom import minidom
 import json
+import tkinter as tk
+from tkinter import filedialog
 
-src = '/Users/leigao/Desktop/vader/bisque-20190303.232959/Yellowbank 2014.11.13'
-img_dest = '/Users/leigao/Desktop/vader/bisque-20190303.232959/imageSet'
+"""root = tk.Tk()
+root.withdraw()
+
+src = filedialog.askdirectory()
+
+img_dest = filedialog.askdirectory()
+"""
+
+src = '/Users/leigao/Desktop/VisionResearchLab/Bisque_to_VOC/Yellowbank2014.11.13'
+img_dest = '/Users/leigao/Desktop/VisionResearchLab/Bisque_to_VOC/imageSet'
 
 src_files = os.listdir(src)
 
@@ -64,6 +74,7 @@ for img in rtn_json.values():
 with open(img_dest + '/data.json', 'w') as outfile:
     json.dump(rtn_json, outfile)
 
-
-
-
+class_text = open(img_dest+"/Class_Labels.txt", "w")
+for i, j in enumerate(labels):
+	class_text.write(str(i+1) + ": " + str(j) + "\n")
+class_text.close()
